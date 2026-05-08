@@ -249,7 +249,7 @@ namespace RunCat365
                 SpeedSource.Memory => memoryInfo.MemoryLoad,
                 _ => 0f,
             };
-            var speed = (float)Math.Max(1.0f, (load / 5.0f) * fpsMaxLimit.GetRate());
+            var speed = (float)Math.Max(1.0f, ((100f - load) / 5.0f) * fpsMaxLimit.GetRate());
             return (int)(500.0f / speed);
         }
 
