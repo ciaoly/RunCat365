@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [x64, x86, ARM64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - run: dotnet restore RunCat365.sln -p:Platform=${{ matrix.platform }}
+
+      - run: dotnet build RunCat365.sln -c Release -p:Platform=${{ matrix.platform }} --no-restore
