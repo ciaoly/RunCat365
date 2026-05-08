@@ -19,6 +19,6 @@ jobs:
         with:
           dotnet-version: "9.0.x"
 
-      - run: dotnet restore RunCat365.sln -p:Platform=${{ matrix.platform }}
+      - run: dotnet restore RunCat365\RunCat365.csproj -p:Platform=${{ matrix.platform }}
 
-      - run: dotnet build RunCat365.sln -c Release -p:Platform=${{ matrix.platform }} --no-restore
+      - run: dotnet build RunCat365\RunCat365.csproj -c Release -p:Platform=${{ matrix.platform }} --no-restore
