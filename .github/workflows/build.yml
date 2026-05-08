@@ -19,6 +19,9 @@ jobs:
         with:
           dotnet-version: "9.0.x"
 
-      - run: dotnet restore RunCat365\RunCat365.csproj -p:Platform=${{ matrix.platform }}
+      - run: dotnet publish RunCat365\RunCat365.csproj -c Release -p:Platform=${{ matrix.platform }} -o publish/${{ matrix.platform }}
 
-      - run: dotnet build RunCat365\RunCat365.csproj -c Release -p:Platform=${{ matrix.platform }} --no-restore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: RunCat365-${{ matrix.platform }}
+          path: publish/${{ matrix.platform }}
